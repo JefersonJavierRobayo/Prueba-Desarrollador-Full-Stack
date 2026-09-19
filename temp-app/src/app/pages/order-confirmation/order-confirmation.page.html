@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Confirmación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+  <ion-icon name="checkmark-circle-outline" color="success" class="success-icon"></ion-icon>
+
+  <h2>¡Compra Exitosa!</h2>
+  <p>Tu pedido ha sido procesado correctamente y guardado en el almacenamiento local.</p>
+
+  <ion-card *ngIf="order">
+    <ion-card-header>
+      <ion-card-subtitle>Número de Pedido</ion-card-subtitle>
+      <ion-card-title>{{ order.id }}</ion-card-title>
+      <ion-card-subtitle class="ion-margin-top">
+        Total pagado: ${{ order.total | number }} COP
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="goToCatalog()">
+    Volver al Catálogo
+  </ion-button>
+</ion-content>

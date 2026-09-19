@@ -1,0 +1,36 @@
+.product-img {
+  height: 180px;
+  object-fit: contain;
+  width: 100%;
+  padding: 12px;
+}
+
+.quantity-control-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--ion-color-primary);
+  border-radius: 8px;
+  padding: 2px 4px;
+
+  ion-button {
+    --background: transparent;
+    --box-shadow: none;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --color: #ffffff; /* <-- Cambia el color de los íconos/texto a blanco */
+    margin: 0;
+    font-weight: bold;
+
+    ion-icon {
+      font-size: 1.4rem;
+      color: #ffffff; /* <-- Refuerza el color blanco del ícono */
+    }
+  }
+
+  .quantity-number {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+}

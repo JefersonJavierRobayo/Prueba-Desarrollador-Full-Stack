@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/catalog"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Calculadora de Puntos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Formulario -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Calcula tus Puntos Trimestrales</ion-card-title>
+      <ion-card-subtitle>1 Punto equivale a $1.500 COP</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="stacked">Ventas Ejecutadas (COP) [Meta: $11.000.000]</ion-label>
+        <ion-input
+          type="number"
+          placeholder="Ej: 9000000"
+          [(ngModel)]="executedSalesAmount"
+          (ionInput)="onInputChange()">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="stacked">Unidades Vendidas [Meta: 6.000 Unidades]</ion-label>
+        <ion-input
+          type="number"
+          placeholder="Ej: 4500"
+          [(ngModel)]="executedUnits"
+          (ionInput)="onInputChange()">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="calculatePoints()">
+        <ion-icon slot="start" name="calculator"></ion-icon>
+        Calcular
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tarjeta de Resultados (Solo visible cuando result != null tras dar click en Calcular) -->
+  <ion-card *ngIf="result" color="light" class="result-card">
+    <ion-card-header>
+      <ion-card-title>Resumen de Cumplimiento</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <!-- Puntos en Pesos -->
+        <ion-row class="ion-align-items-center ion-margin-bottom">
+          <ion-col size="7">
+            <strong>Cuota en Pesos:</strong><br>
+            <small>Ventas: {{ executedSalesAmount | currency:'COP':'symbol':'1.0-0' }}</small><br>
+            <small>Cumplimiento: {{ result.salesPercentage }}%</small>
+          </ion-col>
+          <ion-col size="5" class="ion-text-end">
+            <ion-badge color="primary">{{ result.salesPoints }} Puntos</ion-badge><br>
+            <small>({{ result.salesEquivalentValue | currency:'COP':'symbol':'1.0-0' }})</small>
+          </ion-col>
+        </ion-row>
+
+        <!-- Leyenda explicativa de puntos en pesos -->
+        <ion-row class="ion-margin-bottom">
+          <ion-col size="12">
+            <small class="ion-text-muted">
+              Puntos según cumplimiento: <br>
+              • 10% = 20 pts | 30% = 40 pts | 50% = 70 pts | 80%+ = 100 pts
+            </small>
+          </ion-col>
+        </ion-row>
+
+        <!-- Puntos en Unidades -->
+        <ion-row class="ion-align-items-center ion-margin-bottom">
+          <ion-col size="7">
+            <strong>Cuota en Unidades:</strong><br>
+            <small>Cumplimiento: {{ result.unitsPercentage }}%</small>
+          </ion-col>
+          <ion-col size="5" class="ion-text-end">
+            <ion-badge color="secondary">{{ result.unitsPoints }} Puntos</ion-badge><br>
+            <small>({{ result.unitsEquivalentValue | currency:'COP':'symbol':'1.0-0' }})</small>
+          </ion-col>
+        </ion-row>
+
+        <hr>
+
+        <!-- Total Combinado -->
+        <ion-row class="ion-align-items-center">
+          <ion-col size="7">
+            <h3><strong>Total Ganado:</strong></h3>
+          </ion-col>
+          <ion-col size="5" class="ion-text-end">
+            <h3><ion-badge color="success">{{ result.totalPoints }} Puntos</ion-badge></h3>
+            <strong>{{ result.totalEquivalentValue | currency:'COP':'symbol':'1.0-0' }} COP</strong>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,74 @@
+:host {
+  ion-content {
+    --background: #f4f5f8;
+  }
+}
+
+/* Selector aplicado a la clase .success-icon */
+.success-icon {
+  font-size: 96px;
+  color: var(--ion-color-success, #2dd36f);
+  margin-top: 24px;
+  margin-bottom: 16px;
+  animation: popIn 0.4s ease-in-out;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #222428;
+  margin: 0 0 8px 0;
+}
+
+p {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0 auto 24px auto;
+  max-width: 360px;
+  line-height: 1.4;
+}
+
+/* Selector para las tarjetas de información de la orden */
+ion-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 24px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  ion-card-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #888888;
+  }
+
+  ion-card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ion-color-primary, #3880ff);
+    margin-top: 4px;
+  }
+}
+
+ion-button {
+  width: 100%;
+  max-width: 400px;
+  margin: 16px auto 0 auto;
+  --border-radius: 8px;
+  font-weight: 600;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
